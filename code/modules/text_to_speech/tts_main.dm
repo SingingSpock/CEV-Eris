@@ -178,48 +178,43 @@ var/list/tts_seeds = list()
 				else
 					character_sequence_end = null
 		else
-			switch(character)
-				if("'", "`", "\"", "", "-", "~", ":")
-					continue
-				if("&")
-					if(findtext(message, ";", i, i+5)) // If it is an "entity", not a standalone symbol
-						var/next_character = copytext(message, i+1, i+2)
-						if(next_character)
-							if(next_character == "l") // "<" symbol/entity, aka "&lt;"
-								skipping_span = TRUE
-								character_sequence_end = "&"
-								continue
-						character_sequence_end = ";"
-					else
-						output += character
-				if("#")
+			if(character == "'" || character ==  "`" || character ==  "\"" || character ==  "" || character ==  "-" || character ==  "~" || character == ":")
+				continue
+			else if(character=="&")
+				if(findtext(message, ";", i, i+5)) // If it is an "entity", not a standalone symbol
+					var/next_character = copytext(message, i+1, i+2)
+					if(next_character)
+						if(next_character == "l") // "<" symbol/entity, aka "&lt;"
+							skipping_span = TRUE
+							character_sequence_end = "&"
+							continue
 					character_sequence_end = ";"
-				if("<")
-					character_sequence_end = ">"
-
-				// NT to NeoTheology
-				if("N")
-					listen_for_character = "T"
-					output += character
-				if("T")
-					output.Add((character == listen_for_character) ? list("e","o", "T","h","e","o","l","o","g","y") : character)
-
-				// IH to IronHammer
-				if("I")
-					listen_for_character = "H"
-					output += character
-				if("H")
-					output.Add((character == listen_for_character) ? list("r","o","n", "H","a","m","m","e","r") : character)
-
-				// ML to MoebiusLaboratories
-				if("M")
-					listen_for_character = "L"
-					output += character
-				if("L")
-					output.Add((character == listen_for_character) ? list("o","e","b","i","u","s", "L","a","b","o","r","a","t","o","r","i","e","s") : character)
-
 				else
-					listen_for_character = null
 					output += character
+			else if(character=="#")
+				character_sequence_end = ";"
+			else if(character=="<")
+				character_sequence_end = ">"
+				// NT to NeoTheology
+			else if(cmptextEx(character,"N"))
+				listen_for_character = "T"
+				output += character
+			else if(cmptextEx(character,"T"))
+				output.Add((character == listen_for_character) ? list("e","o", "T","h","e","o","l","o","g","y") : character)
+				// IH to IronHammer
+			else if(cmptextEx(character,"I"))
+				listen_for_character = "H"
+				output += character
+			else if(cmptextEx(character,"H"))
+				output.Add((character == listen_for_character) ? list("r","o","n", "H","a","m","m","e","r") : character)
+				// ML to MoebiusLaboratories
+			else if(cmptextEx(character,"M"))
+				listen_for_character = "L"
+				output += character
+			else if(cmptextEx(character,"L"))
+				output.Add((character == listen_for_character) ? list("o","e","b","i","u","s", "L","a","b","o","r","a","t","o","r","i","e","s") : character)
+			else
+				listen_for_character = null
+				output += character
 
 	. = JOINTEXT(output)
