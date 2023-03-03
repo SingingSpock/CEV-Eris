@@ -47,6 +47,9 @@
 		return 1
 	return 0
 
+/*******************
+*   Kitchen Fridge
+********************/
 /obj/machinery/smartfridge/kitchen
 	name = "\improper Agro-Club Fridge"
 	desc = "The panel says it won't allow anyone without access to the kitchen or hydroponics."
@@ -215,16 +218,26 @@
 	currently_drying = drying_something
 	return
 
+/*******************
+*   Disk Storage
+********************/
+/obj/machinery/smartfridge/disks
+	name = "\improper Disk Storage"
+	desc = "For catalouging the tech you have acquired."
+	icon_state = "cart"
+	icon_on = "cart"
+	icon_off = "cart-off"
+	icon_panel = "cart-panel"
 
 
+/obj/machinery/smartfridge/disks/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/computer_hardware/hard_drive/portable/design))
+		return 1
+	return 0
 
-
-
-
-
-
-
-
+/*******************
+*   Basic Procs
+********************/
 
 /obj/machinery/smartfridge/New()
 	..()
