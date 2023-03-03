@@ -83,6 +83,14 @@
 /datum/design/autolathe/circuit/hydroponics
 	name = "hydroponics tray"
 	build_path = /obj/item/electronics/circuitboard/hydroponics
+	
+/datum/design/autolathe/circuit/smartfridge
+	name = "smartfridge"
+	build_path = /obj/item/electronics/circuitboard/smartfridge
+
+/datum/design/autolathe/circuit/smartfridge/disk
+	name = "disk storage"
+	build_path = /obj/item/electronics/circuitboard/smartfridge/disk
 
 //Exelsior ciruits
 /datum/design/autolathe/circuit/shieldgen_excelsior

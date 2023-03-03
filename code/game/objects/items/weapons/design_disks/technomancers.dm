@@ -85,7 +85,8 @@
 		/datum/design/autolathe/circuit/reagentgrinder,
 		/datum/design/autolathe/circuit/industrialgrinder = 2,
 		/datum/design/autolathe/container/hcase_parts,
-		/datum/design/autolathe/circuit/craftingstation
+		/datum/design/autolathe/circuit/craftingstation,
+		/datum/design/autolathe/circuit/smartfridge/disk
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/conveyors
